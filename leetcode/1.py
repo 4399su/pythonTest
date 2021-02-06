@@ -11,8 +11,14 @@ class Solution:
     def anTwosum(self, nums: List[int], target: int) -> List[int]:
         for i in range(len(nums)):
             if target - nums[i] in nums:
-                if i != nums[target - nums[i]].index:
-                    return i, nums[target - nums[i]].index
+                if i != nums.index(target - nums[i]):
+                    return i, nums.index(target - nums[i])
 
-    def copyTwosum(self,nums: List[int], target: int) -> List[int]:
-        return
+    def copyTwosum(self, nums: List[int], target: int) -> List[int]:
+        dict = {}
+        for i in range(len(nums)):
+            a = target - nums[i]
+            if a in nums:
+                return i, dict[nums[i]]
+            else:
+                dict[nums[i]] = i
