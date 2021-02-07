@@ -18,19 +18,29 @@ class Solution:
                 l3.next = l3_temp
                 l3 = l3.next
             if l1 and l2:
-                if l1.val + l2.val >= 10:
-                    l3.val = (l1.val + l2.val) % 10+count
+                l3.val = (l1.val + l2.val + count) % 10
+                if l1.val + l2.val + count >= 10:
                     count = 1
                 else:
                     count = 0
-                    l3.val = l1.val + l2.val
                 l1 = l1.next
                 l2 = l2.next
             elif l1:
-                l3.val = l1.val
+                l3.val = (l1.val + count) % 10
+                if l1.val + count >= 10:
+                    count = 1
+                else:
+                    count = 0
                 l1 = l1.next
             elif l2:
-                l3.val = l2.val
+                l3.val = (l2.val + count) % 10
+                if l2.val + count >= 10:
+                    count = 1
+                else:
+                    count = 0
                 l2 = l2.next
-
+        if count == 1:
+            l3_temp = ListNode()
+            l3.next = l3_temp
+            l3_temp.val = 1
         return headThree
